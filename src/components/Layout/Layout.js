@@ -22,7 +22,6 @@ class Layout extends React.Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    logout: PropTypes.func.isRequired,
   };
   constructor(props) {
     super(props);
@@ -368,11 +367,7 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Appbar
-          style={style.appbar}
-          user={this.props.user}
-          logout={this.props.logout}
-        />
+        <Appbar style={style.appbar} user={this.props.user} />
         <Sidebar audits={this.props.audits} style={style.menu} />
         <div style={style.main}>
           {this.renderBreadcrumbHistory()}

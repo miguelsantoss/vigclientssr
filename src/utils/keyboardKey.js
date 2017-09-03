@@ -74,10 +74,12 @@ const codes = {
 };
 
 // Function Keys (F1-24)
-_.times(24, i => (codes[112 + i] = `F${i + 1}`));
+_.times(24, i => {
+  codes[112 + i] = `F${i + 1}`;
+});
 
 // Alphabet (a-Z)
-_.times(26, (i) => {
+_.times(26, i => {
   const n = i + 65;
   codes[n] = [String.fromCharCode(n + 32), String.fromCharCode(n)];
 });
@@ -127,7 +129,7 @@ const keyboardKey = {
   // By Name
   // ----------------------------------------
   // declare these manually for static analysis
-  /* eslint-disable object-property-newline, no-useless-escape */
+  /* eslint-disable object-property-newline, no-useless-escape, prettier/prettier */
   Cancel: 3,
   Help: 6,
   Backspace: 8,
@@ -246,7 +248,7 @@ const keyboardKey = {
   Play: 250,
   ZoomOut: 251,
 };
-/* eslint-enable object-property-newline, no-useless-escape */
+/* eslint-enable object-property-newline, no-useless-escape, prettier/prettier */
 
 // ----------------------------------------
 // By Alias

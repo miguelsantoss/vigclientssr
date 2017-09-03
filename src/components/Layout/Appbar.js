@@ -12,14 +12,14 @@ class Appbar extends React.Component {
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
-    logout: PropTypes.func.isRequired,
   };
 
   render() {
-    const { logout } = this.props;
     const userLink = (
       <Menu.Item position="right" name="user">
-        <Link to="/login" onClick={() => logout()}>Log Out</Link>
+        <form method="post" action="/logout">
+          <button type="submit"> Log out </button>
+        </form>
       </Menu.Item>
     );
     const guestLink = (

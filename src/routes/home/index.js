@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Home from './Home';
 import Layout from '../../components/Layout';
 
@@ -13,8 +12,6 @@ async function action({ fetch, store }) {
   const { data } = auditList;
   data.news = [];
 
-  const logout = () => axios.post('/logout');
-
   if (!data || !data.audits) {
     throw new Error('Failed to load the audit list.');
   }
@@ -22,7 +19,7 @@ async function action({ fetch, store }) {
     chunks: ['home'],
     title: 'Home',
     component: (
-      <Layout user={user} audits={data.audits} logout={logout}>
+      <Layout user={user} audits={data.audits}>
         <Home news={data.news} />
       </Layout>
     ),
