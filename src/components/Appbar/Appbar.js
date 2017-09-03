@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button } from 'semantic-ui-react';
 
 import Link from '../Link';
-import s from './Layout.css';
+import s from './Appbar.css';
 
 class Appbar extends React.Component {
   static propTypes = {
-    style: PropTypes.object.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
@@ -29,12 +28,12 @@ class Appbar extends React.Component {
     );
 
     return (
-      <Menu fixed="top" inverted borderless style={this.props.style}>
+      <Menu fixed="top" inverted borderless className={s.appbar}>
         <Menu.Item>
           <Menu.Header as={Link} to="/">
-            <span style={{ fontSize: 18 }}>
+            <span className={s.size}>
               DRC
-              <span style={{ color: 'red' }}>VIGILANTE</span>
+              <span className={s.red}>VIGILANTE</span>
             </span>
           </Menu.Header>
         </Menu.Item>

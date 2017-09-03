@@ -20,10 +20,17 @@ html {
 
 body {
   margin: 0;
+  background-color: rgb(236, 240, 245);
 }
 
 a {
   color: #0074c2;
+}
+
+:global(.ui.segment) {
+  border: 0px;
+  border-radius: 0px;
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
 }
 
 /*
@@ -175,4 +182,20 @@ textarea {
   h3 {
     page-break-after: avoid;
   }
+}
+
+.main {
+  margin-left: 200px !important;
+  margin-top: 49px !important;
+}
+
+.contentGrid {
+  margin-left: 0px !important;
+  padding-right: 15px !important;
+  padding-left: 0px !important;
+  background: #ecf0f5 !important;
+}
+
+.breadcrumb {
+  margin-bottom: 0px !important;
 }

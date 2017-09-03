@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Grid, Breadcrumb, Segment } from 'semantic-ui-react';
-
-// external-global styles must be imported in your JS.
 import normalizeCss from 'normalize.css';
-import s from './Layout.css';
 
-import Sidebar from './Sidebar';
-import Appbar from './Appbar';
 import Link from '../Link';
-import style from './style';
+import Sidebar from '../Sidebar';
+import Appbar from '../Appbar';
+import s from './Layout.css';
 
 class Layout extends React.Component {
   static propTypes = {
@@ -356,7 +353,7 @@ class Layout extends React.Component {
   renderBreadcrumbHistory = () => {
     const { history } = this.state;
     return (
-      <Segment size="tiny" style={{ marginBottom: 0 }}>
+      <Segment size="tiny" className={s.breadcrumb}>
         <Breadcrumb size="tiny">
           {history}
         </Breadcrumb>
@@ -367,11 +364,11 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Appbar style={style.appbar} user={this.props.user} />
-        <Sidebar audits={this.props.audits} style={style.menu} />
-        <div style={style.main}>
+        <Appbar user={this.props.user} />
+        <Sidebar audits={this.props.audits} />
+        <div className={s.main}>
           {this.renderBreadcrumbHistory()}
-          <Grid style={style.grid}>
+          <Grid className={s.contentGrid}>
             <Grid.Row>
               <Grid.Column />
             </Grid.Row>
@@ -385,16 +382,6 @@ class Layout extends React.Component {
       </div>
     );
   }
-  // render() {
-  //   return (
-  //     <div>
-  //       <Header />
-  //       {this.props.children}
-  //       <Feedback />
-  //       <Footer />
-  //     </div>
-  //   );
-  // }
 }
 
 export default withStyles(normalizeCss, s)(Layout);

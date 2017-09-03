@@ -6,12 +6,11 @@ import _map from 'lodash/map';
 import { Menu } from 'semantic-ui-react';
 
 import Link from '../Link';
-import s from './Layout.css';
+import s from './Sidebar.css';
 
 class Sidebar extends React.Component {
   static propTypes = {
     audits: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-    style: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   };
   constructor(props) {
     super(props);
@@ -39,9 +38,8 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { style } = this.props;
     return (
-      <Menu vertical fixed="left" inverted style={style}>
+      <Menu vertical fixed="left" inverted className={s.sidebar}>
         <Menu.Item>
           <Menu.Header as={Link} to="/profile">
             Client Profile
