@@ -31,10 +31,12 @@ class Appbar extends React.Component {
       <Menu fixed="top" inverted borderless className={s.appbar}>
         <Menu.Item>
           <Menu.Header as={Link} to="/">
-            <span className={s.size}>
-              DRC
-              <span className={s.red}>VIGILANTE</span>
-            </span>
+            <strong>
+              <span className={s.size}>
+                DRC
+                <span className={s.red}>VIGILANTE</span>
+              </span>
+            </strong>
           </Menu.Header>
         </Menu.Item>
         {this.props.user &&
