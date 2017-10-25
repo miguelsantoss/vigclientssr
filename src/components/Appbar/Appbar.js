@@ -28,7 +28,7 @@ class Appbar extends React.Component {
       <Menu.Item position="right" name="user">
         <form method="post" action="/logout">
           <button style={button} type="submit">
-            {' '}Log out{' '}
+            Log out
           </button>
         </form>
       </Menu.Item>

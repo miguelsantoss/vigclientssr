@@ -16,7 +16,16 @@ class Layout extends React.Component {
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
-    path: PropTypes.string.isRequired,
+    path: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        link: PropTypes.shape({
+          to: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+        }),
+        info: PropTypes.string,
+      }),
+    ).isRequired,
   };
 
   renderBreadcrumbHistory = () => {

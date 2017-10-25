@@ -43,6 +43,10 @@ class Html extends React.Component {
           <link rel="apple-touch-icon" href="apple-touch-icon.png" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" />
           <link rel="stylesheet" href="/pace-theme-minimal.css" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans"
+            rel="stylesheet"
+          />
           {styles.map(style =>
             <style
               key={style.id}
