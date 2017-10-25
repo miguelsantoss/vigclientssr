@@ -2,7 +2,7 @@ import React from 'react';
 import Scan from './Scan';
 import Layout from '../../components/Layout';
 
-async function action({ params, fetch, store }) {
+async function action({ params, fetch, store, path }) {
   const { user } = store.getState();
   if (!user) {
     return { redirect: '/login' };
@@ -17,11 +17,26 @@ async function action({ params, fetch, store }) {
   if (!data || !data.audits || !data.scan) {
     throw new Error('Failed to load scan info.');
   }
+
+  const bc = [
+    { id: `home_${path}`, link: { to: '/', name: 'Home' }, info: user.name },
+    {
+      id: `audits_${path}`,
+      link: { to: '/audits', name: 'Audits' },
+      info: data.scan.audit_date,
+    },
+    {
+      id: `audit${data.scan.audit_id}_${path}`,
+      link: { to: `/audit/${data.scan.audit_id}`, name: 'Scans' },
+      info: data.scan.network,
+    },
+  ];
+
   return {
     chunks: ['scan'],
     title: 'Scan page',
     component: (
-      <Layout audits={data.audits} user={user}>
+      <Layout path={bc} audits={data.audits} user={user}>
         <Scan scan={data.scan} />
       </Layout>
     ),

@@ -4,7 +4,7 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: '192.168.1.67',
+      host: '192.168.123.20',
       user: 'root',
       password: '',
       database: 'drc_app_dev',
@@ -30,9 +30,10 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: '',
     },
     pool: {
       min: 2,

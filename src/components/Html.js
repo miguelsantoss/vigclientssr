@@ -43,10 +43,6 @@ class Html extends React.Component {
           <link rel="apple-touch-icon" href="apple-touch-icon.png" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" />
           <link rel="stylesheet" href="/pace-theme-minimal.css" />
-          <link
-            rel="stylesheet"
-            href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"
-          />
           {styles.map(style =>
             <style
               key={style.id}
@@ -55,7 +51,7 @@ class Html extends React.Component {
             />,
           )}
         </head>
-        <body id="bbody">
+        <body>
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
           <script
             dangerouslySetInnerHTML={{ __html: `window.App=${serialize(app)}` }}

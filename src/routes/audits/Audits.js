@@ -4,9 +4,9 @@ import _cloneDeep from 'lodash/cloneDeep';
 import _map from 'lodash/map';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Segment, Table, Header, Icon } from 'semantic-ui-react';
+import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
 
 import Link from '../../components/Link';
-import s from './Audits.css';
 
 class Audits extends React.Component {
   static propTypes = {
@@ -165,4 +165,4 @@ class Audits extends React.Component {
   // }
 }
 
-export default withStyles(s)(Audits);
+export default withStyles(semantic)(Audits);

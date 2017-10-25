@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
       'example',
       'cvss_score',
       'exploitable',
-      'screen_shot',
+      // 'screenshot',
       'port_number',
       'protocol',
       'risk_factor',

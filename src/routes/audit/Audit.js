@@ -4,8 +4,8 @@ import moment from 'moment';
 import _map from 'lodash/map';
 import { Table, Segment, Header } from 'semantic-ui-react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
 import Link from '../../components/Link';
-import s from './Audit.css';
 
 class Audit extends React.Component {
   static propTypes = {
@@ -142,4 +142,4 @@ class Audit extends React.Component {
   }
 }
 
-export default withStyles(s)(Audit);
+export default withStyles(semantic)(Audit);

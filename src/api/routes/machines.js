@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
         // or internally-used fields from the machine item
         // --------------------------------------------------------
         machineItem.audit_id = machineItem.scan.audit_id;
-        machineItem.audit_date = machineItem.audit_id.created_at;
+        machineItem.audit_date = machineItem.scan.audits.created_at;
         machineItem.scan_network = machineItem.scan.network;
         delete machineItem.scan;
         delete machineItem.confirmed;

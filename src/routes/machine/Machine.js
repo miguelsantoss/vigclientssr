@@ -5,9 +5,9 @@ import _filter from 'lodash/filter';
 import _escapeRegExp from 'lodash/escapeRegExp';
 import { Table, Segment, Header, Input, Icon } from 'semantic-ui-react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
 import Link from '../../components/Link';
 import keyboardKey from '../../utils/keyboardKey';
-import s from './Machine.css';
 
 class Machine extends React.Component {
   static propTypes = {
@@ -17,11 +17,8 @@ class Machine extends React.Component {
       hostname: PropTypes.string.isRequired,
       dns_name: PropTypes.string.isRequired,
       operating_system: PropTypes.string.isRequired,
-      vulnerabilities: PropTypes.arrayOf(
-        PropTypes.shape({
-  
-        }).isRequired,
-      ).isRequired,
+      vulnerabilities: PropTypes.arrayOf(PropTypes.shape({}).isRequired)
+        .isRequired,
     }).isRequired,
   };
 
@@ -127,4 +124,4 @@ class Machine extends React.Component {
   }
 }
 
-export default withStyles(s)(Machine);
+export default withStyles(semantic)(Machine);

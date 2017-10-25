@@ -1,10 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 
 import Link from '../Link';
 import s from './Appbar.css';
+
+const button = {
+  background: 'none!important',
+  color: 'inherit',
+  border: 'none',
+  padding: '0!important',
+  font: 'inherit',
+  borderBottom: '0px solid #444',
+  cursor: 'pointer',
+};
 
 class Appbar extends React.Component {
   static propTypes = {
@@ -17,7 +27,9 @@ class Appbar extends React.Component {
     const userLink = (
       <Menu.Item position="right" name="user">
         <form method="post" action="/logout">
-          <button type="submit"> Log out </button>
+          <button style={button} type="submit">
+            {' '}Log out{' '}
+          </button>
         </form>
       </Menu.Item>
     );

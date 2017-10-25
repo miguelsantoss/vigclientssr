@@ -10,8 +10,8 @@ import {
   Label,
 } from 'semantic-ui-react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
 import Link from '../../components/Link';
-import s from './Scan.css';
 
 class Scan extends React.Component {
   static propTypes = {
@@ -218,4 +218,4 @@ class Scan extends React.Component {
   }
 }
 
-export default withStyles(s)(Scan);
+export default withStyles(semantic)(Scan);

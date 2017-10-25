@@ -4,18 +4,15 @@ import _map from 'lodash/map';
 import { Table, Grid, Segment, Header, Label } from 'semantic-ui-react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Link from '../../components/Link';
-import s from './Page.css';
+import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
 
 class Page extends React.Component {
   static propTypes = {
     page: PropTypes.shape({
       url: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
-      webVulnerabilities: PropTypes.arrayOf(
-        PropTypes.shape({
-  
-        }).isRequired,
-      ).isRequired,
+      webVulnerabilities: PropTypes.arrayOf(PropTypes.shape({}).isRequired)
+        .isRequired,
     }).isRequired,
   };
 
@@ -115,4 +112,4 @@ class Page extends React.Component {
   }
 }
 
-export default withStyles(s)(Page);
+export default withStyles(semantic)(Page);

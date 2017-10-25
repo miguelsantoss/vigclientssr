@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
 import s from './Login.css';
 
 class Login extends React.Component {
@@ -54,4 +55,4 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(s)(Login);
+export default withStyles(semantic, s)(Login);

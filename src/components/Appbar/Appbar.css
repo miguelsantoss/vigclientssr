@@ -1,9 +1,10 @@
 .size {
-  font-size: 18px;
+  font-size: 18px !important;
+  font-weight: 400 !important;
 }
 
 .red {
-  color: #cf000f;
+  color: #cf000f !important;
 }
 
 .appbar {

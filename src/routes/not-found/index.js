@@ -4,7 +4,7 @@ import NotFound from './NotFound';
 
 const title = 'Page Not Found';
 
-async function action({ fetch, store }) {
+async function action({ fetch, store, path }) {
   const { user } = store.getState();
 
   if (user) {
@@ -19,7 +19,7 @@ async function action({ fetch, store }) {
       chunks: ['not-found'],
       title,
       component: (
-        <Layout audits={data.audits} user={user}>
+        <Layout path={path} audits={data.audits} user={user}>
           <NotFound title={title} />
         </Layout>
       ),

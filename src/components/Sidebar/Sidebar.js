@@ -12,12 +12,14 @@ class Sidebar extends React.Component {
   static propTypes = {
     audits: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   };
+
   constructor(props) {
     super(props);
     this.state = {
       history: null,
     };
   }
+
   renderAudits() {
     const { audits } = this.props;
     // Sort audits by data iniciated

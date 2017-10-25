@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import _map from 'lodash/map';
 import { Segment, Grid, Image } from 'semantic-ui-react';
-import s from './Profile.css';
+import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
 
 class Home extends React.Component {
   static propTypes = {
@@ -165,4 +165,4 @@ class Home extends React.Component {
   }
 }
 
-export default withStyles(s)(Home);
+export default withStyles(semantic)(Home);
