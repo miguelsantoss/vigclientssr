@@ -88,7 +88,8 @@ class Audit extends React.Component {
             {this.renderScanEntries()}
           </Table.Body>
         </Table>
-        {scans.length && <Header as="h4"> There are no scans here yet </Header>}
+        {!scans.length &&
+          <Header as="h4"> There are no scans here yet </Header>}
       </div>
     );
   };
@@ -123,7 +124,7 @@ class Audit extends React.Component {
             {this.renderPageEntries()}
           </Table.Body>
         </Table>
-        {pages.length && <Header as="h4">There are no pages here yet</Header>}
+        {!pages.length && <Header as="h4">There are no pages here yet</Header>}
       </div>
     );
   };

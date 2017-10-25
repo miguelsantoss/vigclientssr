@@ -5,12 +5,26 @@ import { makeDir, moveDir, cleanDir } from './lib/fs';
 import run from './run';
 
 // GitHub Pages
+// const remote = {
+//   name: 'github',
+//   url: 'https://github.com/<user>/<repo>.git',
+//   branch: 'gh-pages',
+//   website: 'https://<user>.github.io/<repo>/',
+//   static: true,
+// };
+
+// const remote = {
+//   name: 'vm-dev',
+//   url: 'vigilante@192.168.123.20:/home/vigilante/vigclientssr.git',
+//   branch: 'master',
+//   website: 'http://192.168.123.20',
+// };
+
 const remote = {
-  name: 'github',
-  url: 'https://github.com/<user>/<repo>.git',
-  branch: 'gh-pages',
-  website: 'https://<user>.github.io/<repo>/',
-  static: true,
+  name: 'vm-dev',
+  url: 'ssh://vigilante@192.168.123.20:/home/vigilante/vigclientssr.git',
+  branch: 'master',
+  website: 'http://192.168.123.20',
 };
 
 // Heroku
@@ -84,6 +98,7 @@ async function deploy() {
 
   // Build the project in RELEASE mode which
   // generates optimized and minimized bundles
+
   process.argv.push('--release');
   if (remote.static) process.argv.push('--static');
   await run(require('./build').default); // eslint-disable-line global-require
