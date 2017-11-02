@@ -13,7 +13,22 @@ router.get('/:id', (req, res) => {
   const id = req.params.id;
   const userId = req.user.id;
   WebVulnerabilities.query({
-    select: ['*'],
+    select: [
+      'affects',
+      'cvss_score',
+      'cwe',
+      'client_id',
+      'description',
+      'id',
+      'impact',
+      'page_id',
+      'request',
+      'response',
+      'risk_factor',
+      'severity',
+      'solution',
+      'title',
+    ],
     where: { id },
   })
     .fetch({ withRelated: 'pages.audits' })
