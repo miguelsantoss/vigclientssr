@@ -22,9 +22,9 @@ import run from './run';
 
 const remote = {
   name: 'vm-dev',
-  url: 'ssh://vigilante@192.168.123.20:/home/vigilante/vigclientssr.git',
+  url: 'ssh://vigilante@192.168.1.67/home/vigilante/ssr.git',
   branch: 'master',
-  website: 'http://192.168.123.20',
+  website: 'http://192.168.1.67',
 };
 
 // Heroku
