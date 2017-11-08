@@ -31,11 +31,16 @@ async function action({ params, fetch, store, path }) {
     },
   ];
 
+  const active = {
+    route: 'audit',
+    id: data.audit.id,
+  };
+
   return {
     chunks: ['audit'],
     title: 'Audit page',
     component: (
-      <Layout path={bc} audits={data.audits} user={user}>
+      <Layout path={bc} active={active} audits={data.audits} user={user}>
         <Audit audit={data.audit} />
       </Layout>
     ),

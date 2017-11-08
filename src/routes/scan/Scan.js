@@ -200,8 +200,8 @@ class Scan extends React.Component {
     >
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>Hostname</Table.HeaderCell>
           <Table.HeaderCell>IP Address</Table.HeaderCell>
+          <Table.HeaderCell>Hostname</Table.HeaderCell>
           <Table.HeaderCell>Operating System</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
@@ -221,10 +221,12 @@ class Scan extends React.Component {
         onClick={() => this.handleRowClick(machine)}
       >
         <Table.Cell>
-          {machine.hostname}
+          <Link to={`/machine/${machine.id}`}>
+            {machine.ip_address}
+          </Link>
         </Table.Cell>
         <Table.Cell>
-          {machine.ip_address}
+          {machine.hostname}
         </Table.Cell>
         <Table.Cell>
           {machine.operating_system}
@@ -271,12 +273,12 @@ class Scan extends React.Component {
                     ? this.state.selectedRow.vulnerabilities.length
                     : ''})`}
                 />
-                {this.renderVulnerabilityList()}
                 <Link to={`/scan/${this.state.scan.id}/vulnerabilities`}>
                   <Button compact size="tiny" fluid>
-                    <span>Show All Vulnerabilities</span>
+                    <span>Show All Vulnerabilities for this Scan</span>
                   </Button>
                 </Link>
+                {this.renderVulnerabilityList()}
               </Container>
             </Segment>
           </Grid.Column>

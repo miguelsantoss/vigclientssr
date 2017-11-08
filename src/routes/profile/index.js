@@ -21,11 +21,15 @@ async function action({ fetch, store, path }) {
     { id: `profile_info_${path}`, link: { to: '/profile', name: 'Profile' } },
   ];
 
+  const active = {
+    route: 'profile',
+  };
+
   return {
     chunks: ['profile'],
     title: 'Profile',
     component: (
-      <Layout path={bc} user={user} audits={data.audits}>
+      <Layout path={bc} active={active} user={user} audits={data.audits}>
         <Profile info={data.info} />
       </Layout>
     ),

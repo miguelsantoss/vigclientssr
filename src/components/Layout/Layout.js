@@ -26,6 +26,10 @@ class Layout extends React.Component {
         info: PropTypes.string,
       }),
     ).isRequired,
+    active: PropTypes.shape({
+      route: PropTypes.string.isRequired,
+      id: PropTypes.number,
+    }).isRequired,
   };
 
   renderBreadcrumbHistory = () => {
@@ -87,7 +91,7 @@ class Layout extends React.Component {
     return (
       <div>
         <Appbar user={this.props.user} />
-        <Sidebar audits={this.props.audits} />
+        <Sidebar active={this.props.active} audits={this.props.audits} />
         <div className={s.main}>
           {this.renderBreadcrumbHistory()}
           <Grid className={s.contentGrid}>

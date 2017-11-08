@@ -21,10 +21,10 @@ import run from './run';
 // };
 
 const remote = {
-  name: 'vm-dev',
-  url: 'ssh://vigilante@192.168.1.67/home/vigilante/ssr.git',
+  name: 'vm-prod',
+  url: 'ssh://vigilante@10.10.10.237/home/vigilante/vigclientssr.git',
   branch: 'master',
-  website: 'http://192.168.1.67',
+  website: 'http://10.10.10.237:3000',
 };
 
 // Heroku

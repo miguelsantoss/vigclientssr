@@ -36,11 +36,16 @@ async function action({ params, fetch, store, path }) {
     },
   ];
 
+  const active = {
+    route: 'audit',
+    id: data.scan.audit_id,
+  };
+
   return {
     chunks: ['scan_vuln'],
     title: 'Scan page',
     component: (
-      <Layout path={bc} audits={data.audits} user={user}>
+      <Layout path={bc} active={active} audits={data.audits} user={user}>
         <Scan scan={data.scan} />
       </Layout>
     ),
