@@ -17,3 +17,7 @@
   top: 50%;
   transform: translate(0, -50%) rotate(45deg);
 }
+
+.selectedBlue::after {
+  background: rgb(236, 240, 245) !important;
+}

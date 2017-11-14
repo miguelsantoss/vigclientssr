@@ -30,7 +30,7 @@ class Login extends React.Component {
               <input
                 className={s.formControl}
                 id="userEmail"
-                type="email"
+                type="username"
                 name="userEmail"
                 placeholder="Email"
                 autoFocus // eslint-disable-line jsx-a11y/no-autofocus

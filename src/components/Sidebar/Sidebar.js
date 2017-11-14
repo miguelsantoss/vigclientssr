@@ -4,6 +4,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import moment from 'moment';
 import _map from 'lodash/map';
 import { Menu, Icon } from 'semantic-ui-react';
+import cx from 'classnames';
 
 import Link from '../Link';
 import s from './Sidebar.css';
@@ -60,7 +61,9 @@ class Sidebar extends React.Component {
           to={`/audit/${audit.id}`}
           active={active.route === 'audit' && active.id === audit.id}
           className={
-            active.route === 'audit' && active.id === audit.id ? s.selected : ''
+            active.route === 'audit' && active.id === audit.id
+              ? cx(s.selected, s.selectedBlue)
+              : ''
           }
         >
           {`${moment(audit.created_at).format('DD MMM YYYY')}`}
@@ -99,7 +102,7 @@ class Sidebar extends React.Component {
         </Menu.Item>
         <Menu.Item
           active={route === 'audits'}
-          className={route === 'audits' ? s.selected : ''}
+          className={route === 'audits' ? cx(s.selected, s.selectedBlue) : ''}
         >
           <Menu.Header as={Link} to="/audits">
             <Icon name="configure" />
