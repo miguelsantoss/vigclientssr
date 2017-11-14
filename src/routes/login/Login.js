@@ -1,52 +1,60 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import semantic from '!!isomorphic-style-loader!css-loader!../../../node_modules/semantic-ui-css/semantic.css'; // eslint-disable-line
+import cx from 'classnames';
 import s from './Login.css';
+/* eslint-disable jsx-a11y/label-has-for */
 
 class Login extends React.Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-  };
-
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>
-            {this.props.title}
+          <h1 className={cx(s.centerText, s.white)}>
+            <strong>
+              <span className={s.size}>
+                DRC
+                <span className={s.fontRed}>VIGILANTE</span>
+              </span>
+            </strong>
           </h1>
-          <p className={s.lead}>
-            Log in with your username or company email address.
-          </p>
-          <form method="post">
-            <div className={s.formGroup}>
+          <div className={s.formTitle}>
+            <span className={s.formTitle}>Welcome.</span>
+            <span className={s.formSubtitle}>Please, Login.</span>
+          </div>
+          <form className={s.form} method="post">
+            <div className={s.formField}>
               <label className={s.label} htmlFor="usernameOrEmail">
                 Username or email address:
-                <input
-                  className={s.input}
-                  id="usernameOrEmail"
-                  type="text"
-                  name="usernameOrEmail"
-                  autoFocus // eslint-disable-line jsx-a11y/no-autofocus
-                />
               </label>
+              <input
+                className={s.formControl}
+                id="userEmail"
+                type="email"
+                name="userEmail"
+                placeholder="Email"
+                autoFocus // eslint-disable-line jsx-a11y/no-autofocus
+              />
             </div>
-            <div className={s.formGroup}>
-              <label className={s.label} htmlFor="password">
+            <div className={s.formField}>
+              <label className={s.label} htmlFor="userPassword">
                 Password:
-                <input
-                  className={s.input}
-                  id="password"
-                  type="password"
-                  name="password"
-                />
               </label>
+              <input
+                className={s.formControl}
+                id="userPassword"
+                type="password"
+                name="userPassword"
+                placeholder="Password"
+              />
             </div>
-            <div className={s.formGroup}>
-              <button className={s.button} type="submit">
-                Log in
-              </button>
+            <div className={s.formAction}>
+              <input
+                className={s.button}
+                type="submit"
+                name="commit"
+                value="LOGIN"
+              />
             </div>
           </form>
         </div>
@@ -54,5 +62,7 @@ class Login extends React.Component {
     );
   }
 }
+
+/* eslint-enable jsx-a11y/label-has-for */
 
 export default withStyles(semantic, s)(Login);

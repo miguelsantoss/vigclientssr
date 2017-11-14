@@ -59,6 +59,9 @@ class Sidebar extends React.Component {
           as={Link}
           to={`/audit/${audit.id}`}
           active={active.route === 'audit' && active.id === audit.id}
+          className={
+            active.route === 'audit' && active.id === audit.id ? s.selected : ''
+          }
         >
           {`${moment(audit.created_at).format('DD MMM YYYY')}`}
         </Menu.Item>,
@@ -81,15 +84,23 @@ class Sidebar extends React.Component {
   }
 
   render() {
+    const { route } = this.props.active;
     return (
       <Menu vertical fixed="left" inverted className={s.sidebar}>
-        <Menu.Item header active={this.props.active.route === 'profile'}>
+        <Menu.Item
+          header
+          active={route === 'profile'}
+          className={route === 'profile' ? s.selected : ''}
+        >
           <Menu.Header as={Link} to="/profile">
             <Icon name="users" />
             <span> Client Profile</span>
           </Menu.Header>
         </Menu.Item>
-        <Menu.Item active={this.props.active.route === 'audits'}>
+        <Menu.Item
+          active={route === 'audits'}
+          className={route === 'audits' ? s.selected : ''}
+        >
           <Menu.Header as={Link} to="/audits">
             <Icon name="configure" />
             <span> Audits</span>

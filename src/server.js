@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import expressJwt, { UnauthorizedError as Jwt401Error } from 'express-jwt';
 import jwt from 'jsonwebtoken';
-import nodeFetch from 'node-fetch';
+// import nodeFetch from 'node-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
@@ -85,10 +85,10 @@ if (__DEV__) {
 }
 
 app.post('/login', (req, res) => {
-  const { usernameOrEmail, password } = req.body;
+  const { userEmail, userPassword } = req.body;
   User.query({
-    where: { username: usernameOrEmail },
-    orWhere: { email: usernameOrEmail },
+    where: { username: userEmail },
+    orWhere: { email: userEmail },
   })
     .fetch({ withRelated: 'client' })
     .then(user => {
@@ -97,7 +97,7 @@ app.post('/login', (req, res) => {
         return;
       }
       const userItem = user.toJSON();
-      if (!bcrypt.compareSync(password, userItem.password_digest)) {
+      if (!bcrypt.compareSync(userPassword, userItem.password_digest)) {
         res.status(401).json({ errors: { form: 'Invalid Credentials' } });
         return;
       }

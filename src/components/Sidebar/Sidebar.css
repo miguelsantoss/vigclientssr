@@ -4,4 +4,16 @@
   width: 200px !important;
   padding-bottom: 1em !important;
   background: #4276a4 !important;
+  overflow: hidden;
+}
+
+.selected::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: white;
+  right: -8px;
+  top: 50%;
+  transform: translate(0, -50%) rotate(45deg);
 }

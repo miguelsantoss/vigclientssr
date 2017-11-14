@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _map from 'lodash/map';
+import _cloneDeep from 'lodash/cloneDeep';
 import {
   Table,
   Grid,
@@ -9,6 +10,7 @@ import {
   Header,
   Label,
   Button,
+  Icon,
 } from 'semantic-ui-react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Link from '../../components/Link';
@@ -47,7 +49,12 @@ class Scan extends React.Component {
     this.state = {
       selectedRow: null,
       scan: props.scan,
+      sort: {
+        key: 'ip_address',
+        ascending: false,
+      },
     };
+    console.info(props);
   }
 
   getMachineIndex = id => this.state.machines.map(m => m.id).indexOf(id);
@@ -58,6 +65,59 @@ class Scan extends React.Component {
   labelColor = risk => {
     const colors = ['blue', 'green', 'yellow', 'red', 'purple'];
     return colors[risk];
+  };
+
+  handleSort = key => {
+    const { sort } = this.state;
+    if (!sort || sort.key !== key) this.sortAudits(key, true);
+    else if (sort.key === key) this.sortAudits(key, !sort.ascending);
+  };
+
+  iconName = tableKey => {
+    const { key, ascending } = this.state.sort;
+    if (key === tableKey) {
+      if (ascending) return 'triangle up';
+    }
+    return 'triangle down';
+  };
+
+  sortAudits = (key, ascending) => {
+    const scan = _cloneDeep(this.state.scan);
+    const formatIp = ip => {
+      const split = ip.split('.');
+      let ipaddr = '';
+      split.forEach(e => {
+        const aux = `000${e}`.substr(-3);
+        ipaddr = `${ipaddr}.${aux}`;
+      });
+      return ipaddr.substr(1);
+    };
+
+    switch (key) {
+      case 'ip_address':
+        scan.machines.sort((a, b) => {
+          const ip1 = formatIp(a.ip_address);
+          const ip2 = formatIp(b.ip_address);
+          if (ip1 < ip2) return ascending ? -1 : 1;
+          if (ip1 > ip2) return ascending ? 1 : -1;
+          return 0;
+        });
+        break;
+      case '':
+        scan.machines.sort((a, b) => {
+          if (a.hostname < b.hostname) return ascending ? -1 : 1;
+          if (a.hostname > b.hostname) return ascending ? 1 : -1;
+          return 0;
+        });
+        break;
+      default:
+        break;
+    }
+    this.setState({
+      ...this.state,
+      scan,
+      sort: { key, ascending },
+    });
   };
 
   renderPortList = () =>
@@ -77,6 +137,7 @@ class Scan extends React.Component {
           <Table.HeaderCell>Port Number</Table.HeaderCell>
           <Table.HeaderCell>Protocol</Table.HeaderCell>
           <Table.HeaderCell>Service</Table.HeaderCell>
+          <Table.HeaderCell>Version</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -93,6 +154,7 @@ class Scan extends React.Component {
       );
     }
     const { servicePorts } = this.state.selectedRow;
+    console.info(servicePorts);
     if (servicePorts.length === 0) {
       return (
         <Table.Row>
@@ -113,6 +175,9 @@ class Scan extends React.Component {
         <Table.Cell>
           {port.service}
         </Table.Cell>
+        <Table.Cell>
+          {port.version}
+        </Table.Cell>
       </Table.Row>,
     );
   };
@@ -132,7 +197,6 @@ class Scan extends React.Component {
         <Table.Row>
           <Table.HeaderCell />
           <Table.HeaderCell>Title</Table.HeaderCell>
-          <Table.HeaderCell>Count</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -183,9 +247,6 @@ class Scan extends React.Component {
             {vuln.title}
           </strong>
         </Table.Cell>
-        <Table.Cell>
-          {vuln.count}
-        </Table.Cell>
       </Table.Row>,
     );
   };
@@ -200,8 +261,24 @@ class Scan extends React.Component {
     >
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>IP Address</Table.HeaderCell>
-          <Table.HeaderCell>Hostname</Table.HeaderCell>
+          <Table.HeaderCell>
+            <span>IP Address</span>
+            <Icon
+              name={this.iconName('ip_address')}
+              size="small"
+              link
+              onClick={() => this.handleSort('ip_address')}
+            />
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            <span>Hostname</span>
+            <Icon
+              name={this.iconName('hostname')}
+              size="small"
+              link
+              onClick={() => this.handleSort('hostname')}
+            />
+          </Table.HeaderCell>
           <Table.HeaderCell>Operating System</Table.HeaderCell>
         </Table.Row>
       </Table.Header>

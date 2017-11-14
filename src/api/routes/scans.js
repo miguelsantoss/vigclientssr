@@ -88,6 +88,7 @@ router.get('/:id', (req, res) => {
           // --------------------------------------------------------
           // FIXME: machines in the same scan should make more sense
           // --------------------------------------------------------
+
           for (let j = 0; j < machine.vulnerabilities.length; j += 1) {
             const vuln = machine.vulnerabilities[j];
             // Search the scan's list of vulnerabilities
@@ -97,6 +98,7 @@ router.get('/:id', (req, res) => {
               // Risk factors go from 0 to 3. Change any level 4
               // vulnerability to level 3, to help understanding
               // --------------------------------------------------------
+
               if (vuln.risk_factor > 3) {
                 vuln.risk_factor = 3;
               }
