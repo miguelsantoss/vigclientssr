@@ -11,7 +11,7 @@ router.get('/all', (req, res) => {
   }
   const userId = req.user.id;
   Audits.query({
-    select: ['id', 'category', 'created_at', 'closed_at', 'serial_number'],
+    select: ['id', 'category', 'initiated_at', 'serial_number'],
     where: { client_id: userId },
   })
     .fetchAll({ withRelated: ['scans', 'pages'] })

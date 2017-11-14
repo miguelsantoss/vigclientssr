@@ -14,8 +14,8 @@ class Audits extends React.Component {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         category: PropTypes.string.isRequired,
-        created_at: PropTypes.string.isRequired,
-        closed_at: PropTypes.string,
+        closed_at: PropTypes.string.isRequired,
+        initiated_at: PropTypes.string.isRequired,
         serial_number: PropTypes.string.isRequired,
       }),
     ).isRequired,
@@ -26,7 +26,7 @@ class Audits extends React.Component {
     this.state = {
       audits: props.audits,
       sort: {
-        key: 'created_at',
+        key: 'initiated_at',
         ascending: false,
       },
     };
@@ -44,10 +44,10 @@ class Audits extends React.Component {
             return 0;
           });
           break;
-        case 'created_at':
+        case 'initiated_at':
           auditList.sort((a, b) => {
-            const aDate = new Date(a.created_at);
-            const bDate = new Date(b.created_at);
+            const aDate = new Date(a.initiated_at);
+            const bDate = new Date(b.initiated_at);
             if (aDate < bDate) return ascending ? -1 : 1;
             if (aDate > bDate) return ascending ? 1 : -1;
             return 0;
@@ -55,8 +55,8 @@ class Audits extends React.Component {
           break;
         case 'closed_at':
           auditList.sort((a, b) => {
-            const aDate = a.closed_at ? new Date(a.closed_at) : Date.now();
-            const bDate = b.closed_at ? new Date(b.closed_at) : Date.now();
+            const aDate = new Date(a.closed_at);
+            const bDate = new Date(b.closed_at);
             if (aDate < bDate) return ascending ? -1 : 1;
             if (aDate > bDate) return ascending ? 1 : -1;
             return 0;
@@ -95,11 +95,14 @@ class Audits extends React.Component {
         </Table.Cell>
         <Table.Cell>
           <Link to={`/audit/${audit.id}`}>
-            {audit.created_at}
+            {audit.initiated_at}
           </Link>
         </Table.Cell>
         <Table.Cell>
-          {audit.closed_at ? audit.closed_at : 'Audit open'}
+          {audit.closed_at ? 'Closed' : 'Open'}
+        </Table.Cell>
+        <Table.Cell>
+          {audit.closed_at}
         </Table.Cell>
       </Table.Row>,
     );
@@ -129,11 +132,14 @@ class Audits extends React.Component {
               <Table.HeaderCell>
                 <span>Date Iniciated</span>
                 <Icon
-                  name={this.iconName('created_at')}
+                  name={this.iconName('initiated_at')}
                   size="small"
                   link
-                  onClick={() => this.handleSort('created_at')}
+                  onClick={() => this.handleSort('initiated_at')}
                 />
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                <span>Status</span>
               </Table.HeaderCell>
               <Table.HeaderCell>
                 <span>Date Closed</span>
