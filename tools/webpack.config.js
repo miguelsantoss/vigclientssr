@@ -157,10 +157,10 @@ const config = {
           // Compile Sass to CSS
           // https://github.com/webpack-contrib/sass-loader
           // Install dependencies before uncommenting: yarn add --dev sass-loader node-sass
-          // {
-          //   test: /\.scss$/,
-          //   loader: 'sass-loader',
-          // },
+          {
+            test: /\.scss$/,
+            loader: 'sass-loader',
+          },
         ],
       },
 

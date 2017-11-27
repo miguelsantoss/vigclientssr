@@ -10,8 +10,14 @@ class Home extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>FIXME: Home</h1>
-          <h1>FIXME: Home</h1>
+          <span>inicio do projeto, ou seja, a data da primeira auditoria</span>
+          <br />
+          <span>nº de auditorias efetuadas por tipo</span>
+          <br />
+          <span>
+            nº vulnerabilidades por auditoria, por diferentes tipos de
+            vulnerabilidades (grau 1, 2, 3, 4)
+          </span>
         </div>
       </div>
     );

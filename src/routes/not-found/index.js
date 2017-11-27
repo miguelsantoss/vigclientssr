@@ -15,11 +15,19 @@ async function action({ fetch, store, path }) {
       throw new Error('Failed to load the scan list.');
     }
 
+    const bc = [
+      { id: `home_${path}`, link: { to: '/', name: 'Home' }, info: user.name },
+    ];
+
+    const active = {
+      route: 'home',
+    };
+
     return {
       chunks: ['not-found'],
       title,
       component: (
-        <Layout path={path} audits={data.audits} user={user}>
+        <Layout path={bc} active={active} audits={data.audits} user={user}>
           <NotFound title={title} />
         </Layout>
       ),
